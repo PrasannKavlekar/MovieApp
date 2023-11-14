@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:tentwenty_movie_app/config/themes/constants.dart';
 import 'package:tentwenty_movie_app/data/apis/movieAPIs.dart';
@@ -31,15 +33,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
-            color: Colors.grey,
             overflow: TextOverflow.ellipsis,
-            // shadows: <Shadow>[
-            //   Shadow(
-            //     offset: Offset(1.0, 1.0),
-            //     blurRadius: 1.0,
-            //     color: Color.fromARGB(255, 0, 0, 0),
-            //   ),
-            // ],
           ),
         ),
         backgroundColor: const Color(0x00000000),
@@ -60,108 +54,191 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
             var movieData = snapshot.data;
 
             return SingleChildScrollView(
-              child: Stack(
-                children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Stack(
+                    alignment: Alignment.bottomCenter,
                     children: [
-                      Stack(
-                        alignment: Alignment.bottomCenter,
-                        children: [
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height / 1.7,
-                            width: double.infinity,
-                            child: Image.network(
-                              'https://image.tmdb.org/t/p/w500${movieData!.backdropPath}',
-                              fit: BoxFit.cover,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 1.7,
+                        width: double.infinity,
+                        child: Image.network(
+                          'https://image.tmdb.org/t/p/w500${movieData!.backdropPath}',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Positioned.fill(
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            // borderRadius:
+                            //     BorderRadius.all(Radius.circular(20)),
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.black,
+                                Colors.transparent,
+                                Colors.transparent,
+                                Colors.black
+                              ],
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                              stops: [0, 0, 0.7, 1],
                             ),
                           ),
-                          Positioned.fill(
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                // borderRadius:
-                                //     BorderRadius.all(Radius.circular(20)),
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Colors.black,
-                                    Colors.transparent,
-                                    Colors.transparent,
-                                    Colors.black
-                                  ],
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  stops: [0, 0, 0.6, 1],
+                        ),
+                      ),
+                      Positioned.fill(
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            // borderRadius:
+                            //     BorderRadius.all(Radius.circular(20)),
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.black,
+                                Colors.transparent,
+                                Colors.transparent,
+                                Colors.black
+                              ],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              stops: [0, 0, 0.6, 1],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.only(bottom: 30.0),
+                        child: IntrinsicWidth(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text(
+                                'In Theaters ${MovieDateUtils.formatReleaseDate(movieData.releaseDate)}',
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
                                 ),
                               ),
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(bottom: 30.0),
-                            child: IntrinsicWidth(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Text(
-                                    'In Theaters ${MovieDateUtils.formatReleaseDate(movieData.releaseDate)}',
-                                    style: const TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                    ),
+                              ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppColors.ttLightBlue,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 30, vertical: 10),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                  ElevatedButton(
-                                    onPressed: () {},
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: AppColors.ttLightBlue,
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 60, vertical: 10),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
-                                    child: Text('Get Tickets'),
-                                  ),
-                                  OutlinedButton(
-                                    onPressed: () {},
-                                    style: OutlinedButton.styleFrom(
-                                      side: const BorderSide(
-                                        width: 1.0,
-                                        color: AppColors.ttLightBlue,
-                                      ),
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 30, vertical: 10),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
-                                    child: RichText(
-                                      text: const TextSpan(
-                                        children: [
-                                          WidgetSpan(
-                                            alignment:
-                                                PlaceholderAlignment.middle,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 4.0),
-                                              child: Icon(Icons.play_arrow),
-                                            ),
-                                          ),
-                                          WidgetSpan(
-                                            alignment:
-                                                PlaceholderAlignment.middle,
-                                            child: Text('Watch Trailer'),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
+                                ),
+                                child: const Text('Get Tickets'),
                               ),
-                            ),
+                              OutlinedButton(
+                                onPressed: () {},
+                                style: OutlinedButton.styleFrom(
+                                  side: const BorderSide(
+                                    width: 1.0,
+                                    color: AppColors.ttLightBlue,
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 30, vertical: 10),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                                child: RichText(
+                                  text: const TextSpan(
+                                    children: [
+                                      WidgetSpan(
+                                        alignment: PlaceholderAlignment.middle,
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 4.0),
+                                          child: Icon(
+                                            Icons.play_arrow,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                      WidgetSpan(
+                                        alignment: PlaceholderAlignment.middle,
+                                        child: Text(
+                                          'Watch Trailer',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 40.0, vertical: 15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 4),
+                          child: Text(
+                            'Genres',
+                            style: TextStyle(
+                              color: Color(0xFF202C43),
+                              fontSize: 18,
+                              // fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        Wrap(
+                          children: List<Widget>.generate(
+                            movieData.genres.length,
+                            (int idx) {
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: Chip(
+                                  label: Text(movieData.genres[idx].name),
+                                  backgroundColor: Color(
+                                          (math.Random().nextDouble() *
+                                                  0xFFFFFF)
+                                              .toInt())
+                                      .withOpacity(0.5),
+                                ),
+                              );
+                            },
+                          ).toList(),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 8.0),
+                          child: Divider(),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 8.0),
+                          child: Text(
+                            'Overview',
+                            style: TextStyle(
+                              color: Color(0xFF202C43),
+                              fontSize: 18,
+                              // fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          movieData.overview,
+                          style: const TextStyle(
+                            color: Color(0xFF8F8F8F),
+                            // fontSize: 12,
+                            // fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
