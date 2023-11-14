@@ -36,6 +36,25 @@ class MovieCard extends StatelessWidget {
               'https://image.tmdb.org/t/p/w500${movie.posterPath}',
               fit: BoxFit.cover,
             ),
+            Positioned.fill(
+              child: Container(
+                decoration: const BoxDecoration(
+                  // borderRadius:
+                  //     BorderRadius.all(Radius.circular(20)),
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.black,
+                      Colors.transparent,
+                      Colors.transparent,
+                      Colors.black
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: [0, 0, 0.6, 1],
+                  ),
+                ),
+              ),
+            ),
             Positioned(
               bottom: 4,
               left: 4,
@@ -52,13 +71,6 @@ class MovieCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     overflow: TextOverflow.ellipsis,
-                    shadows: <Shadow>[
-                      Shadow(
-                        offset: Offset(1.0, 1.0),
-                        blurRadius: 1.0,
-                        color: Color.fromARGB(255, 0, 0, 0),
-                      ),
-                    ],
                   ),
                 ),
               ),
