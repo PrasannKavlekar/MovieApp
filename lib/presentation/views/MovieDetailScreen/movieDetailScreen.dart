@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:tentwenty_movie_app/config/themes/constants.dart';
 import 'package:tentwenty_movie_app/data/apis/movieAPIs.dart';
 import 'package:tentwenty_movie_app/domain/models/movieDetailsModel.dart';
+import 'package:tentwenty_movie_app/domain/models/movieVideosModel.dart';
 import 'package:tentwenty_movie_app/utils/dateutils/dateUtils.dart';
+import 'package:tentwenty_movie_app/utils/yt_player/yt_player.dart';
 
 class MovieDetailScreen extends StatefulWidget {
   final String movieId;
@@ -133,7 +135,24 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                                 child: const Text('Get Tickets'),
                               ),
                               OutlinedButton(
-                                onPressed: () {},
+                                onPressed: () async {
+                                  ///TODO: Watch Trailer Logic here
+                                  ///Check if any yt videos available
+                                  MovieVideosModel _result =
+                                      await MovieAPIs.fetchMovieVideos(
+                                          widget.movieId);
+                                  if (_result != null) {
+                                    if (!context.mounted) return;
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => YTPlayerScreen(
+                                          videoId: _result.results.first.id,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                },
                                 style: OutlinedButton.styleFrom(
                                   side: const BorderSide(
                                     width: 1.0,

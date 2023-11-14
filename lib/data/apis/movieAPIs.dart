@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:tentwenty_movie_app/domain/models/movieDetailsModel.dart';
 import 'package:tentwenty_movie_app/domain/models/movieImagesModel.dart';
+import 'package:tentwenty_movie_app/domain/models/movieVideosModel.dart';
 import 'package:tentwenty_movie_app/domain/models/upcomingMovieModel.dart';
 
 class MovieAPIs {
@@ -42,6 +43,18 @@ class MovieAPIs {
       return MovieImagesModel.fromJson(data);
     } else {
       throw Exception('Failed to load movie images');
+    }
+  }
+
+  static Future<MovieVideosModel> fetchMovieVideos(String movieId) async {
+    final response =
+        await http.get(Uri.parse('$apiUrl/$movieId/videos?api_key=$apiKey'));
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = jsonDecode(response.body);
+
+      return MovieVideosModel.fromJson(data);
+    } else {
+      throw Exception('Failed to load movie videos');
     }
   }
 }

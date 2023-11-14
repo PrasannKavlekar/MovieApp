@@ -6,10 +6,10 @@ MovieImagesModel movieImagesFromJson(String str) =>
 String movieImagesToJson(MovieImagesModel data) => json.encode(data.toJson());
 
 class MovieImagesModel {
-  List<Backdrop> backdrops;
+  List<MovieImage> backdrops;
   int id;
-  List<Backdrop> logos;
-  List<Backdrop> posters;
+  List<MovieImage> logos;
+  List<MovieImage> posters;
 
   MovieImagesModel({
     required this.backdrops,
@@ -20,13 +20,13 @@ class MovieImagesModel {
 
   factory MovieImagesModel.fromJson(Map<String, dynamic> json) =>
       MovieImagesModel(
-        backdrops: List<Backdrop>.from(
-            json["backdrops"].map((x) => Backdrop.fromJson(x))),
+        backdrops: List<MovieImage>.from(
+            json["backdrops"].map((x) => MovieImage.fromJson(x))),
         id: json["id"],
-        logos:
-            List<Backdrop>.from(json["logos"].map((x) => Backdrop.fromJson(x))),
-        posters: List<Backdrop>.from(
-            json["posters"].map((x) => Backdrop.fromJson(x))),
+        logos: List<MovieImage>.from(
+            json["logos"].map((x) => MovieImage.fromJson(x))),
+        posters: List<MovieImage>.from(
+            json["posters"].map((x) => MovieImage.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -37,7 +37,7 @@ class MovieImagesModel {
       };
 }
 
-class Backdrop {
+class MovieImage {
   double aspectRatio;
   int height;
   String? iso6391;
@@ -46,7 +46,7 @@ class Backdrop {
   int voteCount;
   int width;
 
-  Backdrop({
+  MovieImage({
     required this.aspectRatio,
     required this.height,
     required this.iso6391,
@@ -56,7 +56,7 @@ class Backdrop {
     required this.width,
   });
 
-  factory Backdrop.fromJson(Map<String, dynamic> json) => Backdrop(
+  factory MovieImage.fromJson(Map<String, dynamic> json) => MovieImage(
         aspectRatio: json["aspect_ratio"]?.toDouble(),
         height: json["height"],
         iso6391: json["iso_639_1"],
