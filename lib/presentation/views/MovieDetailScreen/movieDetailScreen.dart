@@ -1,11 +1,10 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:tentwenty_movie_app/config/themes/constants.dart';
 import 'package:tentwenty_movie_app/data/apis/movieAPIs.dart';
-import 'package:tentwenty_movie_app/domain/models/movieDetailsModel.dart';
+import 'package:tentwenty_movie_app/domain/models/generic/movieDetailsModel.dart';
 import 'package:tentwenty_movie_app/domain/models/movieVideosModel.dart';
 import 'package:tentwenty_movie_app/utils/dateutils/dateUtils.dart';
+import 'package:tentwenty_movie_app/utils/generic/colorUtils.dart';
 import 'package:tentwenty_movie_app/utils/yt_player/yt_player.dart';
 
 class MovieDetailScreen extends StatefulWidget {
@@ -136,18 +135,17 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                               ),
                               OutlinedButton(
                                 onPressed: () async {
-                                  ///TODO: Watch Trailer Logic here
                                   ///Check if any yt videos available
-                                  MovieVideosModel _result =
+                                  MovieVideosModel result =
                                       await MovieAPIs.fetchMovieVideos(
                                           widget.movieId);
-                                  if (_result != null) {
+                                  if (result != null) {
                                     if (!context.mounted) return;
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => YTPlayerScreen(
-                                          videoId: _result.results.first.id,
+                                          videoId: result.results.first.id,
                                         ),
                                       ),
                                     );
@@ -223,11 +221,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                                 padding: const EdgeInsets.only(right: 8.0),
                                 child: Chip(
                                   label: Text(movieData.genres[idx].name),
-                                  backgroundColor: Color(
-                                          (math.Random().nextDouble() *
-                                                  0xFFFFFF)
-                                              .toInt())
-                                      .withOpacity(0.5),
+                                  backgroundColor: ColorUtils.getRandomColor(),
                                 ),
                               );
                             },

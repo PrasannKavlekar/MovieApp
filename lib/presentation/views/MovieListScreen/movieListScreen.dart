@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tentwenty_movie_app/config/themes/constants.dart';
 import 'package:tentwenty_movie_app/data/apis/movieAPIs.dart';
 import 'package:tentwenty_movie_app/domain/models/upcomingMovieModel.dart';
+import 'package:tentwenty_movie_app/presentation/views/MovieSearchScreen/movieSearchScreen.dart';
 import 'package:tentwenty_movie_app/presentation/widgets/movieCardWidget.dart';
 
 class MovieListScreen extends StatefulWidget {
@@ -32,6 +33,23 @@ class _MovieListScreenState extends State<MovieListScreen> {
         ),
         backgroundColor: Colors.white,
         elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: () {
+              ///Navigate to search screen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MovieSearchScreen(),
+                ),
+              );
+            },
+            icon: const Icon(
+              Icons.search_outlined,
+              color: Colors.black,
+            ),
+          ),
+        ],
       ),
       backgroundColor: AppColors.ttOffWhite,
       body: Container(

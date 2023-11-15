@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:tentwenty_movie_app/domain/models/generic/genreModel.dart';
+
 MovieDetailsModel movieDetailsFromJson(String str) =>
     MovieDetailsModel.fromJson(json.decode(str));
 
@@ -124,26 +126,6 @@ class MovieDetailsModel {
         "video": video,
         "vote_average": voteAverage,
         "vote_count": voteCount,
-      };
-}
-
-class Genre {
-  int id;
-  String name;
-
-  Genre({
-    required this.id,
-    required this.name,
-  });
-
-  factory Genre.fromJson(Map<String, dynamic> json) => Genre(
-        id: json["id"],
-        name: json["name"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
       };
 }
 
