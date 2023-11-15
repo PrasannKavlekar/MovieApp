@@ -3,6 +3,7 @@ import 'package:tentwenty_movie_app/config/color_constants.dart';
 import 'package:tentwenty_movie_app/data/apis/movieAPIs.dart';
 import 'package:tentwenty_movie_app/domain/models/generic/movieDetailsModel.dart';
 import 'package:tentwenty_movie_app/domain/models/movieVideosModel.dart';
+import 'package:tentwenty_movie_app/presentation/views/MovieTicketBookingScreen/movieTicketBookingScreen.dart';
 import 'package:tentwenty_movie_app/presentation/widgets/image_widget.dart';
 import 'package:tentwenty_movie_app/utils/dateutils/dateUtils.dart';
 import 'package:tentwenty_movie_app/utils/generic/colorUtils.dart';
@@ -53,7 +54,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
-            var movieData = snapshot.data;
+            MovieDetailsModel movieData = snapshot.data!;
 
             return SingleChildScrollView(
               child: Column(
@@ -66,7 +67,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                         height: MediaQuery.of(context).size.height / 1.7,
                         width: double.infinity,
                         child: ImageWidget(
-                          imagePath: movieData!.backdropPath,
+                          imagePath: movieData.backdropPath,
                         ),
                       ),
                       Positioned.fill(
@@ -122,7 +123,16 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                                 ),
                               ),
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          MovieTicketBookingScreen(
+                                              data: movieData),
+                                    ),
+                                  );
+                                },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: AppColors.ttLightBlue,
                                   padding: const EdgeInsets.symmetric(
