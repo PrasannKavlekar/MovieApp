@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppColors {
+abstract class AppColors {
   static const Color ttDarkPurple = Color(0xFF2E2739);
   static const Color ttBlueGreen = Color(0xFF15D2BC);
   static const Color ttOffWhite = Color(0xFFF6F6FA);

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tentwenty_movie_app/config/themes/constants.dart';
+import 'package:tentwenty_movie_app/config/color_constants.dart';
 import 'package:tentwenty_movie_app/data/apis/movieAPIs.dart';
 import 'package:tentwenty_movie_app/domain/models/upcomingMovieModel.dart';
+import 'package:tentwenty_movie_app/presentation/views/MovieListScreen/widgets/movieCardWidget.dart';
 import 'package:tentwenty_movie_app/presentation/views/MovieSearchScreen/movieSearchScreen.dart';
-import 'package:tentwenty_movie_app/presentation/widgets/movieCardWidget.dart';
 
 class MovieListScreen extends StatefulWidget {
   const MovieListScreen({super.key});

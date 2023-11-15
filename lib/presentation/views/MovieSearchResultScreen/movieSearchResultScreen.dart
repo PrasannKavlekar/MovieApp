@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tentwenty_movie_app/config/themes/constants.dart';
+import 'package:tentwenty_movie_app/config/color_constants.dart';
 import 'package:tentwenty_movie_app/data/apis/movieAPIs.dart';
 import 'package:tentwenty_movie_app/domain/models/moviesByGenreModel.dart';
 import 'package:tentwenty_movie_app/presentation/widgets/searchResultWidget.dart';
@@ -32,6 +32,7 @@ class _MovieSearchResultScreenState extends State<MovieSearchResultScreen> {
                   Navigator.pop(context);
                 },
               ),
+              elevation: 0,
             ),
             body: const Center(
               child: CircularProgressIndicator(
@@ -52,6 +53,7 @@ class _MovieSearchResultScreenState extends State<MovieSearchResultScreen> {
                   Navigator.pop(context);
                 },
               ),
+              elevation: 0,
             ),
             body: Center(
               child: Text('Error: ${snapshot.error}'),

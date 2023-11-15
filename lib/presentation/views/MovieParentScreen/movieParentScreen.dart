@@ -4,7 +4,7 @@ import 'package:tentwenty_movie_app/presentation/views/MoreOptionsScreen/moreOpt
 import 'package:tentwenty_movie_app/presentation/views/MovieDashboardScreen/movieDashboardScreen.dart';
 import 'package:tentwenty_movie_app/presentation/views/MovieListScreen/movieListScreen.dart';
 
-import '../../../config/themes/constants.dart';
+import '../../../config/color_constants.dart';
 
 class MovieParentScreen extends StatefulWidget {
   const MovieParentScreen({super.key});

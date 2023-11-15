@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tentwenty_movie_app/domain/models/upcomingMovieModel.dart';
 import 'package:tentwenty_movie_app/presentation/views/MovieDetailScreen/movieDetailScreen.dart';
+import 'package:tentwenty_movie_app/presentation/widgets/image_widget.dart';
 
 class MovieCard extends StatelessWidget {
   final UpcomingMovieModel movie;
@@ -32,9 +33,8 @@ class MovieCard extends StatelessWidget {
           // crossAxisAlignment: CrossAxisAlignment.center,
           fit: StackFit.expand,
           children: [
-            Image.network(
-              'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-              fit: BoxFit.cover,
+            ImageWidget(
+              imagePath: movie.posterPath,
             ),
             Positioned.fill(
               child: Container(

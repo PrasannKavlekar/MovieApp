@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tentwenty_movie_app/config/themes/constants.dart';
+import 'package:tentwenty_movie_app/config/color_constants.dart';
 import 'package:tentwenty_movie_app/data/apis/movieAPIs.dart';
 import 'package:tentwenty_movie_app/domain/models/generic/movieDetailsModel.dart';
 import 'package:tentwenty_movie_app/domain/models/movieVideosModel.dart';
+import 'package:tentwenty_movie_app/presentation/widgets/image_widget.dart';
 import 'package:tentwenty_movie_app/utils/dateutils/dateUtils.dart';
 import 'package:tentwenty_movie_app/utils/generic/colorUtils.dart';
 import 'package:tentwenty_movie_app/utils/yt_player/yt_player.dart';
@@ -64,9 +65,8 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height / 1.7,
                         width: double.infinity,
-                        child: Image.network(
-                          'https://image.tmdb.org/t/p/w500${movieData!.backdropPath}',
-                          fit: BoxFit.cover,
+                        child: ImageWidget(
+                          imagePath: movieData!.backdropPath,
                         ),
                       ),
                       Positioned.fill(

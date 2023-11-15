@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tentwenty_movie_app/config/themes/constants.dart';
+import 'package:tentwenty_movie_app/config/color_constants.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YTPlayerScreen extends StatefulWidget {

@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:tentwenty_movie_app/config/themes/constants.dart';
+import 'package:tentwenty_movie_app/config/color_constants.dart';
 import 'package:tentwenty_movie_app/presentation/views/MovieParentScreen/movieParentScreen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Upcoming Movies App',
+      title: 'Movies App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: AppColors.ttDarkPurple,
+        fontFamily: 'Poppins',
       ),
       home: const MovieParentScreen(),
     );
