@@ -12,6 +12,7 @@ import 'package:tentwenty_movie_app/domain/models/upcomingMovieModel.dart';
 
 class MovieAPIs {
   static Future<List<UpcomingMovieModel>> fetchMovies() async {
+    ///API for fetching Upcoming Movies from API
     final response = await http.get(Uri.parse(
         '${APIConstants.baseURL}/movie/upcoming?api_key=${APIConstants.apiKey}'));
     if (response.statusCode == 200) {
@@ -24,6 +25,7 @@ class MovieAPIs {
   }
 
   static Future<MovieDetailsModel> fetchMovieDetails(String movieId) async {
+    ///API for fetching Movie Details from API
     final response = await http.get(Uri.parse(
         '${APIConstants.baseURL}/movie/$movieId?api_key=${APIConstants.apiKey}'));
     if (response.statusCode == 200) {
@@ -36,6 +38,7 @@ class MovieAPIs {
   }
 
   static Future<MovieImagesModel> fetchMovieImages(String movieId) async {
+    ///API for fetching Movie Images from API
     final response = await http.get(Uri.parse(
         '${APIConstants.baseURL}/movie/$movieId/images?api_key=${APIConstants.apiKey}'));
     if (response.statusCode == 200) {
@@ -48,6 +51,7 @@ class MovieAPIs {
   }
 
   static Future<MovieVideosModel> fetchMovieVideos(String movieId) async {
+    ///API for fetching Movie Videos from API
     final response = await http.get(Uri.parse(
         '${APIConstants.baseURL}/movie/$movieId/videos?api_key=${APIConstants.apiKey}'));
     if (response.statusCode == 200) {
@@ -60,6 +64,7 @@ class MovieAPIs {
   }
 
   static Future<List<Genre>> fetchGenres() async {
+    ///API for fetching Genres from API
     final response = await http.get(Uri.parse(
         '${APIConstants.baseURL}/genre/movie/list?api_key=${APIConstants.apiKey}'));
     if (response.statusCode == 200) {
@@ -73,6 +78,7 @@ class MovieAPIs {
 
   static Future<List<MovieSearchResult>> fetchMoviesByGenres(
       String genreId) async {
+    ///API for fetching Movies by Genre from API
     final response = await http.get(Uri.parse(
         '${APIConstants.baseURL}/discover/movie?with_genres=$genreId&api_key=${APIConstants.apiKey}'));
     if (response.statusCode == 200) {
@@ -85,6 +91,7 @@ class MovieAPIs {
   }
 
   static Future<List<MovieSearchResult>> fetchSearchResults(String text) async {
+    ///API for fetching Search Results from API
     final response = await http.get(Uri.parse(
         '${APIConstants.baseURL}/search/movie?query=$text&api_key=${APIConstants.apiKey}'));
     if (response.statusCode == 200) {

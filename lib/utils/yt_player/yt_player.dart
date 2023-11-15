@@ -19,6 +19,9 @@ class _YTPlayerScreenState extends State<YTPlayerScreen> {
   void initState() {
     super.initState();
 
+    ///Links provided by the API are not working in iFrame implementation of Flutter webview.
+    ///Hence an alternate Yt link was used instead.
+
     _controller = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(testURL)!,
       flags: const YoutubePlayerFlags(

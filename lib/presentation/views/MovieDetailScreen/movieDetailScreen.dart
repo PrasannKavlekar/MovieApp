@@ -151,14 +151,23 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                                           widget.movieId);
                                   if (result != null) {
                                     if (!context.mounted) return;
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => YTPlayerScreen(
-                                          videoId: result.results.first.id,
-                                        ),
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text(
+                                            'The videos from the API would not work in iFrame(Plugin/Flutter issue), so I hardcoded a yt link instead'),
                                       ),
                                     );
+                                    Future.delayed(const Duration(seconds: 3),
+                                        () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => YTPlayerScreen(
+                                            videoId: result.results.first.id,
+                                          ),
+                                        ),
+                                      );
+                                    });
                                   }
                                 },
                                 style: OutlinedButton.styleFrom(

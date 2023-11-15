@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tentwenty_movie_app/config/color_constants.dart';
 import 'package:tentwenty_movie_app/presentation/views/MediaLibraryScreen/mediaLibraryScreen.dart';
 import 'package:tentwenty_movie_app/presentation/views/MoreOptionsScreen/moreOptionsScreen.dart';
 import 'package:tentwenty_movie_app/presentation/views/MovieDashboardScreen/movieDashboardScreen.dart';
 import 'package:tentwenty_movie_app/presentation/views/MovieListScreen/movieListScreen.dart';
-
-import '../../../config/color_constants.dart';
 
 class MovieParentScreen extends StatefulWidget {
   const MovieParentScreen({super.key});
@@ -18,7 +17,7 @@ class _MovieParentScreenState extends State<MovieParentScreen> {
 
   final _pages = [
     const MovieDashboardScreen(),
-    MovieListScreen(),
+    const MovieListScreen(),
     const MediaLibraryScreen(),
     const MoreOptionsScreen(),
   ];
